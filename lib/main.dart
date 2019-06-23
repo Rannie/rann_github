@@ -24,11 +24,11 @@ void main() {
 class RannGithubApp extends StatelessWidget {
   RannGithubApp({Key key}) : super(key: key);
 
-  final store = new Store<HubState>(
+  final store = Store<HubState>(
     appReducer,
     middleware: middlewares,
-    initialState: new HubState(
-      user: new User(),
+    initialState: HubState(
+      user: User(),
       themeData: ThemeData(primarySwatch: themeColor),
       locale: Locale('zh', 'CH')
     )
@@ -59,8 +59,13 @@ class HubRootWidget extends StatefulWidget {
   HubRootWidget({Key key, this.child}) : super(key: key);
 
   @override
-  State<HubRootWidget> createState() {
-    // TODO: implement createState
+  State<HubRootWidget> createState() => _HubRootWidgetState();
+}
 
+class _HubRootWidgetState extends State<HubRootWidget> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return null;
   }
 }
