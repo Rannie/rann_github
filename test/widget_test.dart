@@ -13,7 +13,7 @@ import 'package:rann_github/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(RannGithubApp());
+    await tester.pumpWidget(HubApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

@@ -12,7 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runZoned(() {
-    runApp(RannGithubApp());
+    runApp(HubApp());
     PaintingBinding.instance.imageCache.maximumSize = 100;
     Provider.debugCheckInvalidValueType = null;
   }, onError: (Object obj, StackTrace stack) {
@@ -21,17 +21,22 @@ void main() {
   });
 }
 
-class RannGithubApp extends StatelessWidget {
-  RannGithubApp({Key key}) : super(key: key);
+class HubApp extends StatefulWidget {
+  HubApp({Key key}) : super(key: key);
 
+  @override
+  State<HubApp> createState() => _HubAppState();
+}
+
+class _HubAppState extends State<HubApp> {
   final store = Store<HubState>(
-    appReducer,
-    middleware: middlewares,
-    initialState: HubState(
-      user: User(),
-      themeData: ThemeData(primarySwatch: themeColor),
-      locale: Locale('zh', 'CH')
-    )
+      appReducer,
+      middleware: middlewares,
+      initialState: HubState(
+          user: User(),
+          themeData: ThemeData(primarySwatch: themeColor),
+          locale: Locale('zh', 'CH')
+      )
   );
 
   @override
@@ -48,24 +53,11 @@ class RannGithubApp extends StatelessWidget {
           locale: store.state.locale,
           supportedLocales: [store.state.locale],
           theme: store.state.themeData,
+          routes: {
+            LoginPage.pName: (context) => LoginPage()
+          },
         );
       }),
     );
-  }
-}
-
-class HubRootWidget extends StatefulWidget {
-  final Widget child;
-  HubRootWidget({Key key, this.child}) : super(key: key);
-
-  @override
-  State<HubRootWidget> createState() => _HubRootWidgetState();
-}
-
-class _HubRootWidgetState extends State<HubRootWidget> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
   }
 }

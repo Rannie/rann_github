@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const int whiteThemeColor = 0xffffff;
+const int whiteThemeColor = 0xFFFFFFFF;
 
 const MaterialColor themeColor = const MaterialColor(
     whiteThemeColor,

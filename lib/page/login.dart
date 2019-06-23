@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  static final String pName = 'login_page';
-
+  static final String pName = '/';
+  LoginPage({Key key}) : super(key: key);
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return null;
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Hello World'
+    );
   }
 }

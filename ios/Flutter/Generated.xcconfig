@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/Users/rann/Library/flutter
-FLUTTER_APPLICATION_PATH=/Users/rann/Dev/flutter/rann_github
+FLUTTER_APPLICATION_PATH=/Users/rann/RannStudio/rann_github
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios
