@@ -13,3 +13,10 @@ doc/api/
 
 # IDE
 .idea/
+
+# Android
+android/.gradle/
+
+# iOS
+ios/Runner.xcworkspace/xcuserdata/
+ios/Runner.xcworkspace/xcshareddata/

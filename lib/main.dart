@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rann_github/i18n/localizations.dart';
 import 'package:rann_github/model/user.dart';
 import 'package:rann_github/page/login.dart';
+import 'package:rann_github/page/welcome.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:redux/redux.dart';
 import 'package:rann_github/style/style.dart';
@@ -33,7 +34,7 @@ class _HubAppState extends State<HubApp> {
       appReducer,
       middleware: middlewares,
       initialState: HubState(
-          user: User(),
+          user: null,
           themeData: ThemeData(primarySwatch: themeColor),
           locale: Locale('zh', 'CH')
       )
@@ -54,7 +55,8 @@ class _HubAppState extends State<HubApp> {
           supportedLocales: [store.state.locale],
           theme: store.state.themeData,
           routes: {
-            LoginPage.pName: (context) => LoginPage()
+            LoginPage.pName: (context) => LoginPage(),
+            WelcomePage.pName: (context) => WelcomePage()
           },
         );
       }),
