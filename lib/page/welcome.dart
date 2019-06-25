@@ -4,7 +4,7 @@ import 'package:rann_github/page/home.dart';
 import 'package:rann_github/service/user_service.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:rann_github/style/style.dart';
-import 'package:rann_github/util/navigator_util.dart';
+import 'package:rann_github/util/navigator_utils.dart';
 import 'package:redux/redux.dart';
 import 'dart:async';
 import 'login.dart';

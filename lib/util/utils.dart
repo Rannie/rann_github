@@ -11,4 +11,8 @@ class Utils {
   static HubStringsBase getLocale(BuildContext context) {
     return HubLocalizations.of(context).currentLocalized;
   }
+
+  static bool isEmptyString(String string) {
+    return string == null || string.length == 0 || string.trim().length == 0;
+  }
 }

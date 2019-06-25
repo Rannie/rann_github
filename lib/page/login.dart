@@ -4,6 +4,7 @@ import 'package:rann_github/common/variables.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:rann_github/style/style.dart';
 import 'package:rann_github/util/local_storage.dart';
+import 'package:rann_github/util/ui_utils.dart';
 import 'package:rann_github/widget/flat_button.dart';
 import 'package:rann_github/widget/input_widget.dart';
 import 'package:rann_github/util/utils.dart';
@@ -38,7 +39,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _handleLogin() {
-      print('login $_username $_password');
+    print('login $_username $_password');
+    if (Utils.isEmptyString(_username)) {
+      print('empty username');
+      return;
+    }
+
+    if (Utils.isEmptyString(_password)) {
+      print('empty password');
+      return;
+    }
+
+    UIUtils.showLoadingDialog(context);
   }
 
   @override
