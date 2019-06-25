@@ -35,7 +35,7 @@ class _HubAppState extends State<HubApp> {
       middleware: middlewares,
       initialState: HubState(
           user: null,
-          themeData: ThemeData(primarySwatch: themeColor),
+          themeData: ThemeData(primarySwatch: HubColors.primarySwatch),
           locale: Locale('zh', 'CH')
       )
   );
@@ -49,6 +49,7 @@ class _HubAppState extends State<HubApp> {
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
             HubLocalizationsDelegate.delegate
           ],
           locale: store.state.locale,
