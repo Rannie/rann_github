@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:rann_github/network/interceptor/error_interceptor.dart';
 import 'package:rann_github/network/interceptor/response_interceptor.dart';
 import 'package:rann_github/network/interceptor/token_interceptor.dart';
+import 'package:rann_github/network/result_data.dart';
 
 class HttpManager {
   static const CONTENT_TYPE_JSON = 'application/json';
@@ -26,7 +27,7 @@ class HttpManager {
     _client.interceptors.add(ResponseInterceptor());
   }
 
-  get(String path, Map<String, dynamic> params, Options options) async {
+  Future<ResultData> get(String path, Map<String, dynamic> params, Options options) async {
     Response response = await _client.get(path, queryParameters: params, options: options);
     if (response.data is DioError) {
       return ErrorInterceptor.resultError(response.data);
@@ -34,7 +35,7 @@ class HttpManager {
     return response.data;
   }
 
-  post(String path, data, Options options) async {
+  Future<ResultData> post(String path, data, Options options) async {
     Response response = await _client.post(path, data: data, options: options);
     if (response.data is DioError) {
       return ErrorInterceptor.resultError(response.data);

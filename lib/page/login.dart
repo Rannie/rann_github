@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:rann_github/common/data_result.dart';
 import 'package:rann_github/common/variables.dart';
+import 'package:rann_github/page/home.dart';
 import 'package:rann_github/service/user_service.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:rann_github/style/style.dart';
 import 'package:rann_github/util/local_storage.dart';
+import 'package:rann_github/util/navigator_utils.dart';
 import 'package:rann_github/util/ui_utils.dart';
 import 'package:rann_github/widget/flat_button.dart';
 import 'package:rann_github/widget/input_widget.dart';
@@ -109,6 +111,9 @@ class _LoginPageState extends State<LoginPage> {
                           UIUtils.showLoadingDialog(context);
                           DataResult res = await UserService.login(_username, _password, store);
                           Navigator.pop(context);
+                          if (res != null && res.status) {
+                            NavigatorUtils.pushReplacementNamed(context, HomePage.pName);
+                          }
                         }
                       )
                     ],

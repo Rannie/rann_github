@@ -40,7 +40,7 @@ class UserInfoEpic implements EpicClass<HubState> {
   
   Stream _loadUserInfo() async* {
     print('==== LOAD USER INFO ====');
-    var res = await UserService.fetchUserInfo();
+    var res = await UserService.fetchUserInfo(null);
     yield UpdateUserAction(res.data);
   }
 }
