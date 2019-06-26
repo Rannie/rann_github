@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:rann_github/common/data_result.dart';
 import 'package:rann_github/common/variables.dart';
+import 'package:rann_github/service/user_service.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:rann_github/style/style.dart';
 import 'package:rann_github/util/local_storage.dart';
@@ -36,21 +38,6 @@ class _LoginPageState extends State<LoginPage> {
     _password = await LocalStorage.get(Defines.PW_KEY);
     userController.value = TextEditingValue(text: _username ?? "");
     pwdController.value = TextEditingValue(text: _password ?? "");
-  }
-
-  _handleLogin() {
-    print('login $_username $_password');
-    if (Utils.isEmptyString(_username)) {
-      print('empty username');
-      return;
-    }
-
-    if (Utils.isEmptyString(_password)) {
-      print('empty password');
-      return;
-    }
-
-    UIUtils.showLoadingDialog(context);
   }
 
   @override
@@ -108,7 +95,21 @@ class _LoginPageState extends State<LoginPage> {
                         text: Utils.getLocale(context).loginActionTitle,
                         textColor: Color(HubColors.textWhite),
                         color: Theme.of(context).primaryColor,
-                        onPressed: _handleLogin
+                        onPressed: () async {
+                          if (Utils.isEmptyString(_username)) {
+                            print('empty username');
+                            return;
+                          }
+
+                          if (Utils.isEmptyString(_password)) {
+                            print('empty password');
+                            return;
+                          }
+
+                          UIUtils.showLoadingDialog(context);
+                          DataResult res = await UserService.login(_username, _password, store);
+                          Navigator.pop(context);
+                        }
                       )
                     ],
                   ),
