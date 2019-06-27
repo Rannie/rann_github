@@ -19,6 +19,8 @@ class UpdateUserAction {
   UpdateUserAction(this.userInfo);
 }
 
+class FetchUserAction {}
+
 class UserInfoMiddleWare implements MiddlewareClass<HubState> {
   @override
   void call(Store<HubState> store, action, NextDispatcher next) {
@@ -33,7 +35,7 @@ class UserInfoEpic implements EpicClass<HubState> {
   @override
   Stream call(Stream actions, EpicStore<HubState> store) {
     return Observable(actions)
-        .ofType(TypeToken<UpdateUserAction>())
+        .ofType(TypeToken<FetchUserAction>())
         .debounce(((_) => TimerStream(true, const Duration(milliseconds:  10))))
         .switchMap((action) => (_loadUserInfo()));
   }

@@ -15,10 +15,10 @@ class UserService {
   static initUserInfo(Store store) async {
     var token = await LocalStorage.get(Defines.TOKEN_KEY);
     DataResult result = await fetchLocalUser();
-    if (result != null && result.status && token) {
+    if (result != null && result.status && token != null) {
       store.dispatch(UpdateUserAction(result.data));
     }
-    return DataResult(result.data, (result.status && token));
+    return DataResult(result.data, (result.status && token != null));
   }
 
   static fetchLocalUser() async {

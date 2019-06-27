@@ -22,6 +22,8 @@ dependencies:
   dio: ^2.1.7
   connectivity: ^0.4.3+2
   event_bus: ^1.1.0
+  android_intent: ^0.3.0+2
+  flare_flutter: ^1.5.2
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +39,12 @@ flutter:
   assets:
     - assets/image/welcome.png
     - assets/image/logo.png
+    - assets/file/rejection.json
+    - assets/file/rejection2.json
+    - assets/file/flare_flutter_logo_.flr
+    - assets/file/loading_world_now.flr
+    - assets/file/Space-Demo.flr
+
 
   fonts:
     - family: HubIconFont

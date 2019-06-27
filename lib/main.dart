@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
 import 'package:rann_github/i18n/localizations.dart';
 import 'package:rann_github/model/user.dart';
+import 'package:rann_github/page/home.dart';
 import 'package:rann_github/page/login.dart';
 import 'package:rann_github/page/welcome.dart';
 import 'package:rann_github/store/hub_state.dart';
@@ -34,9 +35,9 @@ class _HubAppState extends State<HubApp> {
       appReducer,
       middleware: middlewares,
       initialState: HubState(
-          user: null,
+          user: User.empty(),
           themeData: ThemeData(primarySwatch: HubColors.primarySwatch),
-          locale: Locale('zh', 'CH')
+          locale: Locale('en', 'US')
       )
   );
 
@@ -57,7 +58,8 @@ class _HubAppState extends State<HubApp> {
           theme: store.state.themeData,
           routes: {
             LoginPage.pName: (context) => LoginPage(),
-            WelcomePage.pName: (context) => WelcomePage()
+            WelcomePage.pName: (context) => WelcomePage(),
+            HomePage.pName: (context) => HomePage()
           },
         );
       }),

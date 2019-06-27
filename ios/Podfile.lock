@@ -1,4 +1,6 @@
 PODS:
+  - android_intent (0.0.1):
+    - Flutter
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -8,6 +10,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - android_intent (from `.symlinks/plugins/android_intent/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -17,6 +20,8 @@ SPEC REPOS:
     - Reachability
 
 EXTERNAL SOURCES:
+  android_intent:
+    :path: ".symlinks/plugins/android_intent/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
   Flutter:
@@ -25,6 +30,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
+  android_intent: 73316069cd1f6aac919df1c6e640cad190fd5e8b
   connectivity: c72716e202a1225ec4810740d5cb56b8ae3bf4cc
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
