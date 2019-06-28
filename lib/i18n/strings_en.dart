@@ -4,7 +4,11 @@ class HubStringsEn extends HubStringsBase {
   @override
   String get appName => 'Rann Hub';
   @override
+  String get appEmpty => 'Empty(oﾟ▽ﾟ)o';
+  @override
   String get loadingText => 'Loading...';
+  @override
+  String get loadMoreText => 'loading';
   @override
   String get loginPwdHint => 'password';
   @override
@@ -17,4 +21,12 @@ class HubStringsEn extends HubStringsBase {
   String get homeTrend => 'Trend';
   @override
   String get homeMy => 'My';
+  @override
+  String get notifyUnread => 'unread';
+  @override
+  String get notifyRead => 'read';
+  @override
+  String get notifyType => 'type';
+  @override
+  String get notifyStatus => 'status';
 }

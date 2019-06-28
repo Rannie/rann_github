@@ -4,6 +4,8 @@ class HubColors {
     static const int primaryColor = 0xFF4284F3;
     static const int textWhite = 0xFFFFFFFF;
     static const int whiteThemeColor = 0xFFFFFFFF;
+    static const int mainTextColor = 0xFF121917;
+    static const int subTextColor = 0xff959595;
 
     static const MaterialColor primarySwatch = const MaterialColor(
         primaryColor,
@@ -89,5 +91,15 @@ class Style {
     static const normalTextWhite = TextStyle(
         color: Color(HubColors.textWhite),
         fontSize: normalTextSize
+    );
+
+    static const normalText = TextStyle(
+        color: Color(HubColors.mainTextColor),
+        fontSize: normalTextSize,
+    );
+
+    static const smallSubText = TextStyle(
+        color: Color(HubColors.subTextColor),
+        fontSize: smallTextSize,
     );
 }

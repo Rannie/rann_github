@@ -1,7 +1,9 @@
 class HubStringsBase {
   // Common
   String appName;
+  String appEmpty;
   String loadingText;
+  String loadMoreText;
   // Login
   String loginUserHint;
   String loginPwdHint;
@@ -10,4 +12,9 @@ class HubStringsBase {
   String homeDynamic;
   String homeTrend;
   String homeMy;
+  // Event
+  String notifyUnread;
+  String notifyRead;
+  String notifyType;
+  String notifyStatus;
 }
