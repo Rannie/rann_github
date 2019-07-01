@@ -8,6 +8,7 @@ class DynamicBloc {
   int _page = 1;
 
   requestRefresh(String username) async {
+    print('==== REQUEST REFRESH ====');
     pageReset();
     DataResult res = await EventService.getEventReceived(username, page: _page, needDb: false);
     changeLoadMoreStatus(getLoadMoreStatus(res));

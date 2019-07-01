@@ -3,6 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:rann_github/bloc/dynamic_bloc.dart';
 import 'package:rann_github/model/Event.dart';
 import 'package:rann_github/store/hub_state.dart';
+import 'package:rann_github/util/event_utils.dart';
+import 'package:rann_github/widget/event_item.dart';
+import 'package:rann_github/widget/pull_load_widget.dart';
 import 'package:redux/redux.dart';
 
 class DynamicPage extends StatefulWidget {
@@ -35,6 +38,13 @@ class _DynamicPageState extends State<DynamicPage>
   }
 
   _renderEventItem(Event e) {
+    EventViewModel eventViewModel = EventViewModel.fromEventMap(e);
+    return EventItem(
+      eventViewModel,
+      onPressed: () {
+        EventUtils.ActionUtils(context, e, '');
+      },
+    );
   }
 
   Store<HubState> _getStore() {
@@ -42,13 +52,55 @@ class _DynamicPageState extends State<DynamicPage>
   }
 
   @override
-  bool get wantKeepAlive => null;
+  void initState() {
+    super.initState();
+
+    if (dynamicBloc.getDataLength() == 0) {
+      dynamicBloc.changeNeedHeaderStatus(false);
+      showRefreshLoading();
+    }
+
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (dynamicBloc.getDataLength() == 0) {
+      showRefreshLoading();
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      if (dynamicBloc.getDataLength() != 0) {
+        showRefreshLoading();
+      }
+    }
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    dynamicBloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Text(
-      'Dynamic'
+    super.build(context);
+    return HubPullLoadWidget(
+        dynamicBloc.pullLoadWidgetControl,
+        (BuildContext context, int index) => _renderEventItem(dynamicBloc.dataList[index]),
+        requestRefresh,
+        requestLoadMore,
+        refreshKey: refreshIndicatorKey,
+        scrollController: scrollController,
+        useIos: true,
     );
   }
 }

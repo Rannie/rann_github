@@ -83,7 +83,7 @@ class _HubPullLoadWidgetState extends State<HubPullLoadWidget>
           ? widget.control.dataList.length + 2
           : widget.control.dataList.length + 1;
     } else {
-      if (widget.control.dataList.lenght == 0) {
+      if (widget.control.dataList.length == 0) {
         return 1;
       }
 
