@@ -17,4 +17,9 @@ class HubStringsBase {
   String notifyRead;
   String notifyType;
   String notifyStatus;
+  // Trend
+  String trendDay;
+  String trendWeek;
+  String trendMonth;
+  String trendAll;
 }

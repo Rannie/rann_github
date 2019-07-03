@@ -29,4 +29,12 @@ class HubStringsZh extends HubStringsBase {
   String get notifyType => '类型';
   @override
   String get notifyStatus => '状态';
+  @override
+  String get trendDay => '今日';
+  @override
+  String get trendWeek => '本周';
+  @override
+  String get trendMonth => '本月';
+  @override
+  String get trendAll => '全部';
 }

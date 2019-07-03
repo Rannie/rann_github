@@ -29,4 +29,12 @@ class HubStringsEn extends HubStringsBase {
   String get notifyType => 'type';
   @override
   String get notifyStatus => 'status';
+  @override
+  String get trendDay => 'today';
+  @override
+  String get trendWeek => 'week';
+  @override
+  String get trendMonth => 'month';
+  @override
+  String get trendAll => 'all';
 }
