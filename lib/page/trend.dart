@@ -169,11 +169,11 @@ class _TrendPageState extends State<TrendPage>
   }
 
   List<Widget> _sliverBuilder(BuildContext context, bool innerBoxIsScrolled, Store store) {
-//    return <Widget>[
-//      SliverPersistentHeader(
-//        pinned: true,
-//      )
-//    ];
+    return <Widget>[
+      SliverPersistentHeader(
+        pinned: true,
+      )
+    ];
   }
 
   Widget build(BuildContext context) {
