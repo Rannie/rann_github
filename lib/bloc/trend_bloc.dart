@@ -16,7 +16,7 @@ class TrendBloc {
   Future<void> requestRefresh(selectTime, selectType) async {
     _isLoading = true;
     var res = await RepoService.getTrend(since: selectTime.value, languageType: selectType.value);
-    if (res != null && res.result) {
+    if (res != null && res.status) {
       _subject.add(res.data);
     }
     await doNext(res);
@@ -28,7 +28,7 @@ class TrendBloc {
   doNext(res) async {
     if (res.next != null) {
       var resNext = await res.next;
-      if (resNext != null && resNext.result) {
+      if (resNext != null && resNext.status) {
         _subject.add(resNext.data);
       }
     }

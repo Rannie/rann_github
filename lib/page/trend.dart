@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rann_github/model/TrendingRepoModel.dart';
 import 'package:rann_github/style/style.dart';
 import 'package:rann_github/util/utils.dart';
 import 'package:rann_github/widget/card_item.dart';
+import 'package:rann_github/widget/sliver_header_delegate.dart';
 import 'package:redux/redux.dart';
 import 'package:rann_github/store/hub_state.dart';
 import 'package:rann_github/bloc/trend_bloc.dart';
@@ -172,14 +176,62 @@ class _TrendPageState extends State<TrendPage>
     return <Widget>[
       SliverPersistentHeader(
         pinned: true,
+        delegate: HubSliverHeaderDelegate(
+          maxHeight: 65,
+          minHeight: 65,
+          changeSize: true,
+          snapConfig: FloatingHeaderSnapConfiguration (
+            vsync: this,
+            curve: Curves.bounceInOut,
+            duration: Duration(milliseconds: 10)
+          ),
+          builder: (BuildContext context, double shrinkOffset, bool overlapsContent) {
+            var lr = 10 - shrinkOffset / 65 * 10;
+            var radius = Radius.circular(4 - shrinkOffset / 65 * 4);
+            return SizedBox.expand(
+              child: Padding(
+                padding: EdgeInsets.only(top: lr, bottom: 15, left: lr, right: lr),
+                child: _renderHeader(store, radius)
+              ),
+            );
+          }
+        ),
       )
     ];
   }
 
   Widget build(BuildContext context) {
     super.build(context);
-    return Text(
-      'Trend'
+    return StoreBuilder<HubState>(
+      builder: (context, store) {
+        return Scaffold(
+          backgroundColor: Color(HubColors.whiteThemeColor),
+          body: StreamBuilder<List<TrendingRepoModel>>(
+            stream: trendBloc.stream,
+            builder: (context, snapShot) {
+              return NestedScrollViewRefreshIndicator(
+                key: refreshIndicatorKey,
+                onRefresh: requestRefresh,
+                child: NestedScrollView(
+                  controller: scrollController,
+                  physics: AlwaysScrollableScrollPhysics(),
+                  headerSliverBuilder: (context, innerBoxIsScrolled) {
+                    return _sliverBuilder(context, innerBoxIsScrolled, store);
+                  },
+                  body: (snapShot.data == null || snapShot.data.length ==0) ? _buildEmpty()
+                      : ListView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return _renderItem(snapShot.data[index]);
+                    },
+                    itemCount: snapShot.data.length,
+                  )
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
